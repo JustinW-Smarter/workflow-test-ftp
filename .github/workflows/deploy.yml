@@ -11,7 +11,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     name: Deploy to Production via FTP
     runs-on: ubuntu-latest
-    environment: production
+    environment: productie
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
