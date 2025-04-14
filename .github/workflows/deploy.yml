@@ -1,0 +1,42 @@
+name: Deploy naar Server via ftp 🚀
+
+on:
+  push:
+    branches:
+      - main
+      - test
+
+jobs:
+  deploy-production:
+    if: github.ref == 'refs/heads/main'
+    name: Deploy to Production via FTP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 📤 Deploy to Production Server
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_SERVER_PROD }}
+          username: ${{ secrets.FTP_USERNAME_PROD }}
+          password: ${{ secrets.FTP_PASSWORD_PROD }}
+          protocol: ftp
+          server-dir: /productiepad/
+
+  deploy-test:
+    if: github.ref == 'refs/heads/test'
+    name: Deploy to Test Server via FTP
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: 📤 Deploy to Test Server
+        uses: SamKirkland/FTP-Deploy-Action@v4
+        with:
+          server: ${{ secrets.FTP_SERVER_TEST }}
+          username: ${{ secrets.FTP_USERNAME_TEST }}
+          password: ${{ secrets.FTP_PASSWORD_TEST }}
+          protocol: ftp
+          server-dir: /testpad/
