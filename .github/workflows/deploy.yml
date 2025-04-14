@@ -18,11 +18,11 @@ jobs:
       - name: 📤 Deploy to Production Server
         uses: SamKirkland/FTP-Deploy-Action@v4
         with:
-          server: ${{ secrets.FTP_SERVER_PROD }}
-          username: ${{ secrets.FTP_USERNAME_PROD }}
-          password: ${{ secrets.FTP_PASSWORD_PROD }}
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_UNAME_PROD }}
+          password: ${{ secrets.FTP_PASS_PROD }}
           protocol: ftp
-          server-dir: /productiepad/
+          server-dir: /
 
   deploy-test:
     if: github.ref == 'refs/heads/test'
@@ -35,7 +35,7 @@ jobs:
       - name: 📤 Deploy to Test Server
         uses: SamKirkland/FTP-Deploy-Action@v4
         with:
-          server: ${{ secrets.FTP_SERVER_TEST }}
+          server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME_TEST }}
           password: ${{ secrets.FTP_PASSWORD_TEST }}
           protocol: ftp
