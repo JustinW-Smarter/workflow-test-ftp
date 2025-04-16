@@ -23,7 +23,7 @@ jobs:
           username: ${{ secrets.FTP_UNAME_PROD }}
           password: ${{ secrets.FTP_PASS_PROD }}
           protocol: ftps
-          server-dir: /ftp
+          server-dir: /ftp/
 
   deploy-test:
     if: github.ref == 'refs/heads/test'
